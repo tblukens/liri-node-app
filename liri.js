@@ -53,21 +53,21 @@ switch (command) {
         break;
 
     case 'do-what-it-says':
-        fs.readFile("random.txt", "utf8", function(error, data) {
+        fs.readFile("random.txt", "utf8", function (error, data) {
             if (error) {
                 return console.log(error);
             }
             var dataArr = data.split(",");
             var txtCommand = dataArr[0];
             var txtInput = dataArr[1];
-            
+
             doWhatItSays(txtCommand, txtInput)
         })
         break;
 
 
     default:
-        console.log("NO COMMAND INPUT")
+        console.log("Please use one of the following commands:\nconcert-this (artist)\nspotify-this-song (song)\nmovie-this (movie name)\ndo-what-it-says")
         break;
 
 }
@@ -87,12 +87,11 @@ function concertThis(artist) {
             //format the date
             var date = moment(canRead[0].datetime).format("MM/DD/YYYY");
             // "MMMM DD, YYYY @ hh:mm A" -- I like this better!
-            // console.log(venueLoc);
 
-            // console.log(date)
-
+            var all = "Venue Name: " + venue + "\nVenue Location: " + venueLoc + "\nDate: " + date;
             //Log out useful info:
-            console.log("Venue Name: " + venue + "\nVenue Location: " + venueLoc + "\nDate: " + date)
+            console.log(all)
+            appendLogFile("\n~~~\nCONCERT-THIS FUNCTION:\n~~~\n" + all);
         };
     })
 }
@@ -135,22 +134,22 @@ function movieThis(movie) {
 
             var movieTitle = theMovie.Title;
             var movieYear = theMovie.Year;
-            var imdbRating = theMovie.Ratings[0].Source+" rating: "+theMovie.Ratings[0].Value;
-            var rtRating = theMovie.Ratings[1].Source+" rating: "+theMovie.Ratings[1].Value;
+            var imdbRating = theMovie.Ratings[0].Source + " rating: " + theMovie.Ratings[0].Value;
+            var rtRating = theMovie.Ratings[1].Source + " rating: " + theMovie.Ratings[1].Value;
             var country = theMovie.Country;
             var languages = theMovie.Language;
             var plot = theMovie.Plot;
             var actors = theMovie.Actors;
 
-            var all = "Title: "+movieTitle+
-            "\nYear: "+movieYear+
-            "\n"+imdbRating+
-            "\n"+rtRating+
-            "\nCountry: "+country+
-            "\nLanguages: "+languages+
-            "\nPlot: "+plot+
-            "\nActors: "+actors
-            
+            var all = "Title: " + movieTitle +
+                "\nYear: " + movieYear +
+                "\n" + imdbRating +
+                "\n" + rtRating +
+                "\nCountry: " + country +
+                "\nLanguages: " + languages +
+                "\nPlot: " + plot +
+                "\nActors: " + actors
+
             console.log(all);
 
             appendLogFile("\n~~~\nMOVIE-THIS FUNCTION:\n~~~\n" + all);
@@ -159,7 +158,10 @@ function movieThis(movie) {
 
 }
 
+//function to call random.txt and get command and input from the file
 function doWhatItSays(command, input) {
+    appendLogFile("\n~~~ ~~~\nDO-WHAT-IT-SAYS:");
+    //switch getting command from file
     switch (command) {
         case 'concert-this':
             console.log(input)
@@ -170,7 +172,7 @@ function doWhatItSays(command, input) {
                 concertThis(input);
             }
             break;
-    
+
         case 'spotify-this-song':
             // if no song is input into args then default to the sign...
             if (input == "") {
@@ -179,30 +181,31 @@ function doWhatItSays(command, input) {
                 spotifyThisSong(input);
             }
             break;
-    
-    
+
+
         case 'movie-this':
             if (input == "") {
                 movieThis("Mr. Nobody");
             } else {
                 movieThis(input);
             }
-    
+
             break;
-    
-    
+
+
         default:
-            console.log("NO COMMAND INPUT")
+            console.log("Please use one of the following commands:\nconcert-this (artist)\nspotify-this-song (song)\nmovie-this (movie name)\ndo-what-it-says")
             break;
-    
+
     }
 }
 
-function appendLogFile (log) {
-    fs.appendFile("log.txt", log, function(err){
+// function to append the information to log.txt file
+function appendLogFile(log) {
+    fs.appendFile("log.txt", log, function (err) {
         if (err) {
             console.log(err);
-        } 
+        }
 
     })
 }
