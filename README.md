@@ -3,11 +3,13 @@ ___
 
 ## Check this out!
 
-#####This node program will let you search for artists upcoming shows showing where they will be next and what date.
-#####Another function lets you search for a song using spotifys API to get song and artist information.
-#####Third thing we'll let you do is look up a movie and get info for the movie including title, year, plot, and MORE!
+##### This node program will let you search for artists upcoming shows showing where they will be next and what date.
 
-#####Last, but not least we have a command that will read from a text file and get one of the first three commands entered in the text file along with artist, song, or movie.
+##### Another function lets you search for a song using spotifys API to get song and artist information.
+
+##### Third thing we'll let you do is look up a movie and get info for the movie including title, year, plot, and MORE!
+
+##### Last, but not least we have a command that will read from a text file and get one of the first three commands entered in the text file along with artist, song, or movie.
 
 #### All these commands are appended to the log.txt file. The log.txt file will show which command was used and then the information that was logged using that command.
 
