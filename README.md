@@ -57,5 +57,10 @@ ___
 #### This will allow them to be imported into the keys.js file. Then that will be required in the liri.js file.
 
 ___
+### log.txt image showing information passed
+![log.txt](assets/img/log-txt.png)
+#### Function is put above the information
+#### ~~~ Separates functions and information.
+___
 
 ## Hopefully you've followed along well and enjoy this little node app i've created. Thanks for checking it out!
