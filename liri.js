@@ -130,7 +130,6 @@ function movieThis(movie) {
         if (!error && response.statusCode === 200) {
 
             var theMovie = JSON.parse(body);
-            console.log(theMovie)
 
             var movieTitle = theMovie.Title;
             var movieYear = theMovie.Year;

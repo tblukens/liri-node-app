@@ -36,3 +36,116 @@ Artist(s): BACKSTREET BOYS
 Song Name: I Want It That Way
 Preview URL: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=eee5e1a5f4e04fbeae05abf941f49c1a
 Album Name: The Hits--Chapter One
+~~~
+SPOTIFY-THIS-SONG FUNCTION:
+~~~
+Artist(s): ARCTIC MONKEYS
+Song Name: Tranquility Base Hotel & Casino
+Preview URL: https://p.scdn.co/mp3-preview/154fb32a10dabdad3512556e0fa48279604b5a3b?cid=eee5e1a5f4e04fbeae05abf941f49c1a
+Album Name: Tranquility Base Hotel & Casino
+~~~
+CONCERT-THIS FUNCTION:
+~~~
+Venue Name: South Side Ballroom
+Venue Location: Dallas, TX
+Date: 10/09/2018
+~~~
+SPOTIFY-THIS-SONG FUNCTION:
+~~~
+Artist(s): ACE OF BASE
+Song Name: The Sign
+Preview URL: https://p.scdn.co/mp3-preview/4c463359f67dd3546db7294d236dd0ae991882ff?cid=eee5e1a5f4e04fbeae05abf941f49c1a
+Album Name: The Sign (US Album) [Remastered]
+~~~
+MOVIE-THIS FUNCTION:
+~~~
+Title: Hot Fuzz
+Year: 2007
+Internet Movie Database rating: 7.9/10
+Rotten Tomatoes rating: 91%
+Country: UK, France
+Languages: English
+Plot: A skilled London police officer is transferred to a small town that's harbouring a dark secret.
+Actors: Simon Pegg, Martin Freeman, Bill Nighy, Robert Popper
+~~~
+MOVIE-THIS FUNCTION:
+~~~
+Title: Mr. Nobody
+Year: 2009
+Internet Movie Database rating: 7.9/10
+Rotten Tomatoes rating: 67%
+Country: Belgium, Germany, Canada, France, USA, UK
+Languages: English, Mohawk
+Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+~~~ ~~~
+DO-WHAT-IT-SAYS:
+~~~
+SPOTIFY-THIS-SONG FUNCTION:
+~~~
+Artist(s): BACKSTREET BOYS
+Song Name: I Want It That Way
+Preview URL: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=eee5e1a5f4e04fbeae05abf941f49c1a
+Album Name: The Hits--Chapter One
+~~~
+CONCERT-THIS FUNCTION:
+~~~
+Venue Name: South Side Ballroom
+Venue Location: Dallas, TX
+Date: 10/09/2018
+~~~
+SPOTIFY-THIS-SONG FUNCTION:
+~~~
+Artist(s): ACE OF BASE
+Song Name: The Sign
+Preview URL: https://p.scdn.co/mp3-preview/4c463359f67dd3546db7294d236dd0ae991882ff?cid=eee5e1a5f4e04fbeae05abf941f49c1a
+Album Name: The Sign (US Album) [Remastered]
+~~~
+SPOTIFY-THIS-SONG FUNCTION:
+~~~
+Artist(s): ARCTIC MONKEYS
+Song Name: Knee Socks
+Preview URL: https://p.scdn.co/mp3-preview/bf85eb920dc8b7f74c3f0b9b5c6f87fd1fd03119?cid=eee5e1a5f4e04fbeae05abf941f49c1a
+Album Name: AM
+~~~
+MOVIE-THIS FUNCTION:
+~~~
+Title: Mr. Nobody
+Year: 2009
+Internet Movie Database rating: 7.9/10
+Rotten Tomatoes rating: 67%
+Country: Belgium, Germany, Canada, France, USA, UK
+Languages: English, Mohawk
+Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+~~~
+MOVIE-THIS FUNCTION:
+~~~
+Title: Mr. Nobody
+Year: 2009
+Internet Movie Database rating: 7.9/10
+Rotten Tomatoes rating: 67%
+Country: Belgium, Germany, Canada, France, USA, UK
+Languages: English, Mohawk
+Plot: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+~~~
+MOVIE-THIS FUNCTION:
+~~~
+Title: Hot Fuzz
+Year: 2007
+Internet Movie Database rating: 7.9/10
+Rotten Tomatoes rating: 91%
+Country: UK, France
+Languages: English
+Plot: A skilled London police officer is transferred to a small town that's harbouring a dark secret.
+Actors: Simon Pegg, Martin Freeman, Bill Nighy, Robert Popper
+~~~ ~~~
+DO-WHAT-IT-SAYS:
+~~~
+SPOTIFY-THIS-SONG FUNCTION:
+~~~
+Artist(s): BACKSTREET BOYS
+Song Name: I Want It That Way
+Preview URL: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=eee5e1a5f4e04fbeae05abf941f49c1a
+Album Name: The Hits--Chapter One
