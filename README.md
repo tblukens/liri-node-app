@@ -9,6 +9,8 @@ ___
 
 #####Last, but not least we have a command that will read from a text file and get one of the first three commands entered in the text file along with artist, song, or movie.
 
+#### All these commands are appended to the log.txt file. The log.txt file will show which command was used and then the information that was logged using that command.
+
 ___
 
 ### For starters...
