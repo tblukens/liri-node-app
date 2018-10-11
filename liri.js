@@ -40,7 +40,7 @@ function switchCommandCheck(command, argInfo) {
             console.log(argInfo)
             //if no artist is input then let the user know they need to input an artist
             if (argInfo == "") {
-                console.log("Please type an artist or bands name after the concert-this command.")
+                console.log(chalk.bgHex('#990000').hex('#fff')("Please type an artist or bands name after the concert-this command."));
             } else {
                 showRunning(command, argInfo);
                 concertThis(argInfo);
