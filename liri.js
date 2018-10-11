@@ -23,68 +23,77 @@ var argInfo = process.argv.join(" ");
 // console.log(command + '\n' + argInfo)
 
 // function to show its running with command and args
-function showRunning (command, argInfo){
-    console.log(chalk.bgHex('#aa9911').black("| Okay, running "+command.toUpperCase()+" searching for "+argInfo.toUpperCase()+" |"))
+function showRunning(command, argInfo) {
+    if (command === null && argInfo === null) {
+        console.log(chalk.bgHex('#aa9911').black.inverse("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n| Okay, running  DO-WHAT-IT-SAYS |\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"))
+    } else {
+        console.log(chalk.bgHex('#aa9911').black("| Okay, running " + command.toUpperCase() + " searching for " + argInfo.toUpperCase() + " |"))
+    }
 }
 
+switchCommandCheck(command, argInfo);
+
 // switch to decide which command is input:
-switch (command) {
-    case 'concert-this':
-        console.log(argInfo)
-        //if no artist is input then let the user know they need to input an artist
-        if (argInfo == "") {
-            console.log("Please type an artist or bands name after the concert-this command.")
-        } else {
-            showRunning(command, argInfo);
-            concertThis(argInfo);
-        }
-        break;
-
-    case 'spotify-this-song':
-        // if no song is input into args then default to the sign...
-        if (argInfo == "") {
-            argInfo = "The Sign Ace of Base";
-            showRunning(command, argInfo);
-            spotifyThisSong(argInfo);
-        } else {
-            showRunning(command, argInfo);
-            spotifyThisSong(argInfo);
-        }
-        break;
-
-
-    case 'movie-this':
-        if (argInfo == "") {
-            argInfo = "Mr. Nobody";
-            showRunning(command, argInfo);
-            movieThis(argInfo);
-        } else {
-            showRunning(command, argInfo);
-            movieThis(argInfo);
-        }
-
-        break;
-
-    case 'do-what-it-says':
-        fs.readFile("random.txt", "utf8", function (error, data) {
-            if (error) {
-                return console.log(error);
+function switchCommandCheck(command, argInfo) {
+    switch (command) {
+        case 'concert-this':
+            console.log(argInfo)
+            //if no artist is input then let the user know they need to input an artist
+            if (argInfo == "") {
+                console.log("Please type an artist or bands name after the concert-this command.")
+            } else {
+                showRunning(command, argInfo);
+                concertThis(argInfo);
             }
-            var dataArr = data.split(",");
-            var txtCommand = dataArr[0];
-            var txtInput = dataArr[1];
-            
-            showRunning(txtCommand, txtInput)
+            break;
 
-            doWhatItSays(txtCommand, txtInput)
-        })
-        break;
+        case 'spotify-this-song':
+            // if no song is input into args then default to the sign...
+            if (argInfo == "") {
+                argInfo = "The Sign Ace of Base";
+                showRunning(command, argInfo);
+                spotifyThisSong(argInfo);
+            } else {
+                showRunning(command, argInfo);
+                spotifyThisSong(argInfo);
+            }
+            break;
 
 
-    default:
-        console.log(chalk.bgHex('#ffff00').black.underline("Please use one of the following commands:\n") + chalk.cyanBright("concert-this (artist)\nspotify-this-song (song)\nmovie-this (movie name)\ndo-what-it-says"))
-        break;
+        case 'movie-this':
+            if (argInfo == "") {
+                argInfo = "Mr. Nobody";
+                showRunning(command, argInfo);
+                movieThis(argInfo);
+            } else {
+                showRunning(command, argInfo);
+                movieThis(argInfo);
+            }
 
+            break;
+
+        case 'do-what-it-says':
+            fs.readFile("random.txt", "utf8", function (error, data) {
+                if (error) {
+                    return console.log(error);
+                }
+                var dataArr = data.split(",");
+                var txtCommand = dataArr[0];
+                var txtInput = dataArr[1];
+
+                showRunning(null, null)
+
+                // doWhatItSays(txtCommand, txtInput)
+                switchCommandCheck(txtCommand, txtInput);
+            })
+            break;
+
+
+        default:
+            console.log(chalk.bgHex('#ffff00').black.underline("Please use one of the following commands:\n") + chalk.cyanBright("concert-this (artist)\nspotify-this-song (song)\nmovie-this (movie name)\ndo-what-it-says"))
+            break;
+
+    }
 }
 
 // concert function for getting artist venue information
@@ -111,8 +120,8 @@ function concertThis(artist) {
                     "\nVenue Location: " + venueLoc +
                     "\nDate: " + date + "\n~\n";
 
-                var allChalk = chalk.hex('aa9911')("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")+
-                chalk.hex('#ffffff').bgHex('#1155aa')("\nVenue Name:") + " " + chalk.hex('#ff8300')(venue) +
+                var allChalk = chalk.hex('aa9911')("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~") +
+                    chalk.hex('#ffffff').bgHex('#1155aa')("\nVenue Name:") + " " + chalk.hex('#ff8300')(venue) +
                     chalk.hex('#ffffff').bgHex('#1155aa')("\nVenue Location:") + " " + chalk.hex('#ff8300')(venueLoc) +
                     chalk.hex('#ffffff').bgHex('#1155aa')("\nDate:") + " " + chalk.hex('#ff8300')(date);
                 //Log out useful info:
@@ -150,11 +159,11 @@ function spotifyThisSong(song) {
             "\nPreview URL: " + preview +
             "\nAlbum Name: " + albumName;
 
-        var allChalk = chalk.hex('aa9911')("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")+
-        chalk.hex('#ffffff').bgHex('#1155aa')("Artist(s):") + " " + chalk.hex('#ff8300')(artist) +
+        var allChalk = chalk.hex('aa9911')("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n") +
+            chalk.hex('#ffffff').bgHex('#1155aa')("Artist(s):") + " " + chalk.hex('#ff8300')(artist) +
             chalk.hex('#ffffff').bgHex('#1155aa')("\nSong Name: ") + " " + chalk.hex('#ff8300')(songName) +
             chalk.hex('#ffffff').bgHex('#1155aa')("\nPreview URL: ") + " " + chalk.hex('#aaff99').underline(preview) +
-            chalk.hex('#ffffff').bgHex('#1155aa')("\nAlbum Name: ") + " " + chalk.hex('#ff8300')(albumName)+
+            chalk.hex('#ffffff').bgHex('#1155aa')("\nAlbum Name: ") + " " + chalk.hex('#ff8300')(albumName) +
             chalk.hex('aa9911')("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         console.log(allChalk)
@@ -178,8 +187,8 @@ function movieThis(movie) {
             var movieYear = theMovie.Year;
             var imdbRating = theMovie.Ratings[0].Source + " rating: " + theMovie.Ratings[0].Value;
             var rtRating = theMovie.Ratings[1].Source + " rating: " + theMovie.Ratings[1].Value;
-            var imdbRatingChalk = chalk.hex('#ffffff').bgHex('#1155aa')(theMovie.Ratings[0].Source + " rating:")+" " + chalk.hex('#ff8300')(theMovie.Ratings[0].Value);
-            var rtRatingChalk = chalk.hex('#ffffff').bgHex('#1155aa')(theMovie.Ratings[1].Source + " rating:")+" " + chalk.hex('#ff8300')(theMovie.Ratings[1].Value);
+            var imdbRatingChalk = chalk.hex('#ffffff').bgHex('#1155aa')(theMovie.Ratings[0].Source + " rating:") + " " + chalk.hex('#ff8300')(theMovie.Ratings[0].Value);
+            var rtRatingChalk = chalk.hex('#ffffff').bgHex('#1155aa')(theMovie.Ratings[1].Source + " rating:") + " " + chalk.hex('#ff8300')(theMovie.Ratings[1].Value);
             var country = theMovie.Country;
             var languages = theMovie.Language;
             var plot = theMovie.Plot;
@@ -193,16 +202,16 @@ function movieThis(movie) {
                 "\nLanguages: " + languages +
                 "\nPlot: " + plot +
                 "\nActors: " + actors
-                // chalk.hex('#ffffff').bgHex('#1155aa')("\nAlbum Name: ") + " " + chalk.hex('#ff8300')(albumName)
-            var allChalk = chalk.hex('aa9911')("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")+
-            chalk.hex('#ffffff').bgHex('#1155aa')("Title:") + " " + chalk.hex('#ff8300')(movieTitle) +
+            // chalk.hex('#ffffff').bgHex('#1155aa')("\nAlbum Name: ") + " " + chalk.hex('#ff8300')(albumName)
+            var allChalk = chalk.hex('aa9911')("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n") +
+                chalk.hex('#ffffff').bgHex('#1155aa')("Title:") + " " + chalk.hex('#ff8300')(movieTitle) +
                 chalk.hex('#ffffff').bgHex('#1155aa')("\nYear:") + " " + chalk.hex('#ff8300')(movieYear) +
                 "\n" + imdbRatingChalk +
                 "\n" + rtRatingChalk +
                 chalk.hex('#ffffff').bgHex('#1155aa')("\nCountry:") + " " + chalk.hex('#ff8300')(country) +
                 chalk.hex('#ffffff').bgHex('#1155aa')("\nLanguages:") + " " + chalk.hex('#ff8300')(languages) +
                 chalk.hex('#ffffff').bgHex('#1155aa')("\nPlot:") + " " + chalk.hex('#ff8300')(plot) +
-                chalk.hex('#ffffff').bgHex('#1155aa')("\nActors:") + " " + chalk.hex('#ff8300')(actors)+
+                chalk.hex('#ffffff').bgHex('#1155aa')("\nActors:") + " " + chalk.hex('#ff8300')(actors) +
                 chalk.hex('aa9911')("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
             console.log(allChalk);
@@ -211,48 +220,6 @@ function movieThis(movie) {
         }
     });
 
-}
-
-//function to call random.txt and get command and input from the file
-function doWhatItSays(command, input) {
-    appendLogFile("\n~~~ ~~~\nDO-WHAT-IT-SAYS:");
-    //switch getting command from file
-    switch (command) {
-        case 'concert-this':
-            console.log(input)
-            //if no artist is input then let the user know they need to input an artist
-            if (input == "") {
-                console.log("Please type an artist or bands name after the concert-this command.")
-            } else {
-                concertThis(input);
-            }
-            break;
-
-        case 'spotify-this-song':
-            // if no song is input into args then default to the sign...
-            if (input == "") {
-                spotifyThisSong("The Sign Ace of Base");
-            } else {
-                spotifyThisSong(input);
-            }
-            break;
-
-
-        case 'movie-this':
-            if (input == "") {
-                movieThis("Mr. Nobody");
-            } else {
-                movieThis(input);
-            }
-
-            break;
-
-
-        default:
-            console.log("Please use one of the following commands:\nconcert-this (artist)\nspotify-this-song (song)\nmovie-this (movie name)\ndo-what-it-says")
-            break;
-
-    }
 }
 
 // function to append the information to log.txt file
