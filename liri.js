@@ -22,6 +22,10 @@ var argInfo = process.argv.join(" ");
 
 // console.log(command + '\n' + argInfo)
 
+// function to show its running with command and args
+function showRunning (command, argInfo){
+    console.log(chalk.bgHex('#aa9911').black("| Okay, running "+command.toUpperCase()+" searching for "+argInfo.toUpperCase()+" |"))
+}
 
 // switch to decide which command is input:
 switch (command) {
@@ -31,7 +35,7 @@ switch (command) {
         if (argInfo == "") {
             console.log("Please type an artist or bands name after the concert-this command.")
         } else {
-            console.log(chalk.bgYellowBright.blue("Okay, running "+command.toUpperCase()+" searching for "+argInfo.toUpperCase()))
+            showRunning(command, argInfo);
             concertThis(argInfo);
         }
         break;
@@ -40,10 +44,10 @@ switch (command) {
         // if no song is input into args then default to the sign...
         if (argInfo == "") {
             argInfo = "The Sign Ace of Base";
-            console.log(chalk.bgYellowBright.blue("Okay, running "+command.toUpperCase()+" searching for "+argInfo.toUpperCase()))
+            showRunning(command, argInfo);
             spotifyThisSong(argInfo);
         } else {
-            console.log(chalk.bgYellowBright.blue("Okay, running "+command.toUpperCase()+" searching for "+argInfo.toUpperCase()))
+            showRunning(command, argInfo);
             spotifyThisSong(argInfo);
         }
         break;
@@ -52,9 +56,10 @@ switch (command) {
     case 'movie-this':
         if (argInfo == "") {
             argInfo = "Mr. Nobody";
-            console.log(chalk.bgYellowBright.blue("Okay, running "+command.toUpperCase()+" searching for "+argInfo.toUpperCase()))
+            showRunning(command, argInfo);
             movieThis(argInfo);
         } else {
+            showRunning(command, argInfo);
             movieThis(argInfo);
         }
 
@@ -69,7 +74,7 @@ switch (command) {
             var txtCommand = dataArr[0];
             var txtInput = dataArr[1];
             
-            console.log(chalk.bgYellowBright.blue("Okay, running "+txtCommand+" searching for "+txtInput.toUpperCase()))
+            showRunning(txtCommand, txtInput)
 
             doWhatItSays(txtCommand, txtInput)
         })
@@ -77,7 +82,7 @@ switch (command) {
 
 
     default:
-        console.log(chalk.bgHex('#ff8000').bold.black("Please use one of the following commands:\n") + chalk.cyanBright("concert-this (artist)\nspotify-this-song (song)\nmovie-this (movie name)\ndo-what-it-says"))
+        console.log(chalk.bgHex('#ffff00').black.underline("Please use one of the following commands:\n") + chalk.cyanBright("concert-this (artist)\nspotify-this-song (song)\nmovie-this (movie name)\ndo-what-it-says"))
         break;
 
 }
@@ -106,9 +111,10 @@ function concertThis(artist) {
                     "\nVenue Location: " + venueLoc +
                     "\nDate: " + date + "\n~\n";
 
-                var allChalk = chalk.hex('#000000').bgHex('#2299ff')("Venue Name:") + " " + chalk.hex('#2299ff')(venue) +
-                    chalk.hex('#000000').bgHex('#2299ff')("\nVenue Location:") + " " + chalk.hex('#2299ff')(venueLoc) +
-                    chalk.hex('#000000').bgHex('#2299ff')("\nDate:") + " " + chalk.hex('#2299ff')(date + "\n~\n");
+                var allChalk = chalk.hex('aa9911')("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")+
+                chalk.hex('#ffffff').bgHex('#1155aa')("\nVenue Name:") + " " + chalk.hex('#ff8300')(venue) +
+                    chalk.hex('#ffffff').bgHex('#1155aa')("\nVenue Location:") + " " + chalk.hex('#ff8300')(venueLoc) +
+                    chalk.hex('#ffffff').bgHex('#1155aa')("\nDate:") + " " + chalk.hex('#ff8300')(date);
                 //Log out useful info:
                 console.log(allChalk)
                 appendLogFile(all);
@@ -134,6 +140,9 @@ function spotifyThisSong(song) {
         var songName = firstResult.name;
         var preview = firstResult.preview_url;
         var albumName = firstResult.album.name;
+        if (preview === null) {
+            preview = "SORRY, there is no preview file.";
+        }
         //----------------------------------------
 
         var all = "Artist(s): " + artist +
@@ -141,10 +150,12 @@ function spotifyThisSong(song) {
             "\nPreview URL: " + preview +
             "\nAlbum Name: " + albumName;
 
-        var allChalk = chalk.hex('#000000').bgHex('#2299ff')("Artist(s):") + " " + chalk.hex('#2299ff')(artist) +
-            chalk.hex('#000000').bgHex('#2299ff')("\nSong Name: ") + " " + chalk.hex('#2299ff')(songName) +
-            chalk.hex('#000000').bgHex('#2299ff')("\nPreview URL: ") + " " + chalk.hex('#2299ff').underline(preview) +
-            chalk.hex('#000000').bgHex('#2299ff')("\nAlbum Name: ") + " " + chalk.hex('#2299ff')(albumName);
+        var allChalk = chalk.hex('aa9911')("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")+
+        chalk.hex('#ffffff').bgHex('#1155aa')("Artist(s):") + " " + chalk.hex('#ff8300')(artist) +
+            chalk.hex('#ffffff').bgHex('#1155aa')("\nSong Name: ") + " " + chalk.hex('#ff8300')(songName) +
+            chalk.hex('#ffffff').bgHex('#1155aa')("\nPreview URL: ") + " " + chalk.hex('#aaff99').underline(preview) +
+            chalk.hex('#ffffff').bgHex('#1155aa')("\nAlbum Name: ") + " " + chalk.hex('#ff8300')(albumName)+
+            chalk.hex('aa9911')("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         console.log(allChalk)
         appendLogFile("\n~~~\nSPOTIFY-THIS-SONG FUNCTION: " + song.toUpperCase() + "\n~~~\n" + all);
@@ -167,8 +178,8 @@ function movieThis(movie) {
             var movieYear = theMovie.Year;
             var imdbRating = theMovie.Ratings[0].Source + " rating: " + theMovie.Ratings[0].Value;
             var rtRating = theMovie.Ratings[1].Source + " rating: " + theMovie.Ratings[1].Value;
-            var imdbRatingChalk = chalk.hex('#000000').bgHex('#2299ff')(theMovie.Ratings[0].Source + " rating:")+" " + chalk.hex('#2299ff')(theMovie.Ratings[0].Value);
-            var rtRatingChalk = chalk.hex('#000000').bgHex('#2299ff')(theMovie.Ratings[1].Source + " rating:")+" " + chalk.hex('#2299ff')(theMovie.Ratings[1].Value);
+            var imdbRatingChalk = chalk.hex('#ffffff').bgHex('#1155aa')(theMovie.Ratings[0].Source + " rating:")+" " + chalk.hex('#ff8300')(theMovie.Ratings[0].Value);
+            var rtRatingChalk = chalk.hex('#ffffff').bgHex('#1155aa')(theMovie.Ratings[1].Source + " rating:")+" " + chalk.hex('#ff8300')(theMovie.Ratings[1].Value);
             var country = theMovie.Country;
             var languages = theMovie.Language;
             var plot = theMovie.Plot;
@@ -182,15 +193,17 @@ function movieThis(movie) {
                 "\nLanguages: " + languages +
                 "\nPlot: " + plot +
                 "\nActors: " + actors
-                // chalk.hex('#000000').bgHex('#2299ff')("\nAlbum Name: ") + " " + chalk.hex('#2299ff')(albumName)
-            var allChalk = chalk.hex('#000000').bgHex('#2299ff')("Title:") + " " + chalk.hex('#2299ff')(movieTitle) +
-                chalk.hex('#000000').bgHex('#2299ff')("\nYear:") + " " + chalk.hex('#2299ff')(movieYear) +
+                // chalk.hex('#ffffff').bgHex('#1155aa')("\nAlbum Name: ") + " " + chalk.hex('#ff8300')(albumName)
+            var allChalk = chalk.hex('aa9911')("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")+
+            chalk.hex('#ffffff').bgHex('#1155aa')("Title:") + " " + chalk.hex('#ff8300')(movieTitle) +
+                chalk.hex('#ffffff').bgHex('#1155aa')("\nYear:") + " " + chalk.hex('#ff8300')(movieYear) +
                 "\n" + imdbRatingChalk +
                 "\n" + rtRatingChalk +
-                chalk.hex('#000000').bgHex('#2299ff')("\nCountry:") + " " + chalk.hex('#2299ff')(country) +
-                chalk.hex('#000000').bgHex('#2299ff')("\nLanguages:") + " " + chalk.hex('#2299ff')(languages) +
-                chalk.hex('#000000').bgHex('#2299ff')("\nPlot:") + " " + chalk.hex('#2299ff')(plot) +
-                chalk.hex('#000000').bgHex('#2299ff')("\nActors:") + " " + chalk.hex('#2299ff')(actors)
+                chalk.hex('#ffffff').bgHex('#1155aa')("\nCountry:") + " " + chalk.hex('#ff8300')(country) +
+                chalk.hex('#ffffff').bgHex('#1155aa')("\nLanguages:") + " " + chalk.hex('#ff8300')(languages) +
+                chalk.hex('#ffffff').bgHex('#1155aa')("\nPlot:") + " " + chalk.hex('#ff8300')(plot) +
+                chalk.hex('#ffffff').bgHex('#1155aa')("\nActors:") + " " + chalk.hex('#ff8300')(actors)+
+                chalk.hex('aa9911')("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
             console.log(allChalk);
 
